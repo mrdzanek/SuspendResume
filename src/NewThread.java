@@ -3,12 +3,29 @@ class NewThread implements Runnable {
     Thread t;
     boolean suspendFlag;
 
+    public static NewThread createAndStart() {
+        NewThread myThrd = new NewThread();
+        myThrd.t.start();
+        return myThrd;
+    }
+
+    public static NewThread createAndStart(String name) {
+        NewThread myThrd = new NewThread(name);
+        myThrd.t.start();
+        return myThrd;
+    }
+
+    public NewThread() {
+        this("Anonymous Thread");
+    }
+
     public NewThread(String name) {
         this.name = name;
         t = new Thread(this, name);
         System.out.println("New thread: " + t);
         suspendFlag = false;
     }
+
 
     @Override
     public void run() {

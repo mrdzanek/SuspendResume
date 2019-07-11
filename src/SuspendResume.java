@@ -1,10 +1,7 @@
 class SuspendResume {
     public static void main(String[] args) {
-        NewThread ob1 = new NewThread("One");
-        NewThread ob2 = new NewThread("Two");
-
-        ob1.t.start(); //start the thread
-        ob2.t.start(); //start the thread
+        NewThread ob1 = NewThread.createAndStart();
+        NewThread ob2 = NewThread.createAndStart("Named Thread");
 
         try {
             Thread.sleep(1000);
@@ -23,7 +20,7 @@ class SuspendResume {
         }
 
         //wait for threads to finish
-        try{
+        try {
             System.out.println("Waiting for threads to finish");
             ob1.t.join();
             ob2.t.join();
